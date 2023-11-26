@@ -19,6 +19,24 @@ pipeline {
       }
     }
 
+    stage('Tests') {
+      steps {
+        script {
+          sh 'scripts/test.sh'
+        }
+
+      }
+    }
+
+    stage('Docker Image Build') {
+      steps {
+        script {
+          docker.build("${registry}:${env.BUILD_ID}")
+        }
+
+      }
+    }
+
   }
   environment {
     registry = 'piokwa/cicdtask'
