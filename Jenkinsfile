@@ -10,6 +10,15 @@ pipeline {
       }
     }
 
+    stage('Application Build') {
+      steps {
+        script {
+          sh scripts/build.sh
+        }
+
+      }
+    }
+
   }
   environment {
     registry = 'piokwa/cicdtask'
